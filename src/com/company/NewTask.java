@@ -10,7 +10,7 @@ public class NewTask {
     private boolean completed;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
-    public NewTask(Menu menu) {
+    public NewTask(String menu) {
     }
 
     public NewTask(String name, String dueDate, String details, boolean completed, SimpleDateFormat dateFormat) {

@@ -45,6 +45,9 @@ public class Menu {
                 break;
             case "3":
                 System.exit(0);
+                default:
+                    System.out.println("Please select one of the options.");
+                    startMenu();
         }
     }
     public void firstInnerSwitch() {
@@ -56,16 +59,41 @@ public class Menu {
             case "3":
                 //View details here
                 System.out.println("Would you like to change any details, Y or N?");
-                input.nextLine()
+                input.nextLine();
                         if (input.nextLine().toUpperCase().equals("Y")) {
-                    System.out.println("Which details would like to change");
+                    System.out.println("Which details would like to change? \n" +
+                            "1. Title \n" +
+                            "2. Due date \n" +
+                            "3. Description \n" +
+                            "4. completion status \n" +
+                            "5. Delete a task \n" +
+                            "6. Exit");
+                    input.nextLine();
+                    secondInnerSwitch();
+                        } else {
+                            System.out.println("You have not chosen anything, returning you to the main menu.");
+                            startMenu();
                         }
-
+            case "4":
+                System.exit(0);
+                default:
+                    System.out.println("Please select one of the options.");
         }
     }
     public void secondInnerSwitch() {
         switch (input.nextLine()) {
-
+            case "1":
+                //change title
+            case "2":
+                //change due date
+            case "3":
+                //change description
+            case "4":
+                //change completion status
+            case "5":
+                System.exit(0);
+                default:
+                    System.out.println("Please select one of the options.");
         }
     }
 }

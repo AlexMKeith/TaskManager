@@ -19,6 +19,7 @@ public class Tasks {
 
     protected void addTask (NewTask newTask) {
         listOfTasks.add(newTask);
+        uncompletedTasks.add(newTask);
         menu.startMenu();
     }
     protected void viewTasks() {
