@@ -19,7 +19,6 @@ public class Menu {
             case "1":
                 System.out.println("You have chosen to create a new task. \n" +
                         "What is the name of this task?");
-                input.nextLine();
                 NewTask newTask = new NewTask(input.nextLine());
                 tasks.addTask(newTask);
                 System.out.println("You have added the task " + newTask.getName() + " with the details of " + newTask.getDetails() + " and the due date of " + newTask.getDueDate());
@@ -28,14 +27,14 @@ public class Menu {
                 System.out.println("You have chosen to see all tasks.");
                 tasks.viewTasks();
                 System.out.println("Would you like to see more options, Y or N?");
-                input.nextLine();
+//                input.nextLine();
                 if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("What would you like to change? \n" +
                             "1. List only uncompleted tasks \n" +
                             "2. List only completed tasks \n" +
                             "3. View a task's details (More options in here) \n" +
                             "4. Exit");
-                    input.nextLine();
+//                    input.nextLine();
                     firstInnerSwitch();
                 } else {
                     System.out.println("You have not chosen anything, returning you to the main menu.");
@@ -48,18 +47,24 @@ public class Menu {
                 default:
                     System.out.println("Please select one of the options.");
                     startMenu();
+                    break;
         }
     }
     public void firstInnerSwitch() {
         switch (input.nextLine()) {
             case "1":
                 tasks.viewUncompleteTasks();
+                break;
             case "2":
                 tasks.viewCompleteTasks();
+                break;
             case "3":
+                System.out.println("Which task's details would you like to see?");
+                tasks.viewTasks();
+
                 //View details here
                 System.out.println("Would you like to change any details, Y or N?");
-                input.nextLine();
+//                input.nextLine();
                         if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("Which details would like to change? \n" +
                             "1. Title \n" +
@@ -68,32 +73,43 @@ public class Menu {
                             "4. completion status \n" +
                             "5. Delete a task \n" +
                             "6. Exit");
-                    input.nextLine();
+//                    input.nextLine();
                     secondInnerSwitch();
                         } else {
                             System.out.println("You have not chosen anything, returning you to the main menu.");
                             startMenu();
                         }
+                        break;
             case "4":
                 System.exit(0);
                 default:
                     System.out.println("Please select one of the options.");
+                    break;
         }
     }
     public void secondInnerSwitch() {
         switch (input.nextLine()) {
             case "1":
                 //change title
+                break;
             case "2":
                 //change due date
+                break;
             case "3":
                 //change description
+                break;
             case "4":
                 //change completion status
+                break;
             case "5":
+                //delete a task
+                break;
+            case "6":
                 System.exit(0);
+                break;
                 default:
                     System.out.println("Please select one of the options.");
+                    break;
         }
     }
 }
