@@ -67,12 +67,10 @@ public class Menu {
 //                input.nextLine();
                         if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("Which details would like to change? \n" +
-                            "1. Title \n" +
-                            "2. Due date \n" +
-                            "3. Description \n" +
-                            "4. completion status \n" +
-                            "5. Delete a task \n" +
-                            "6. Exit");
+                            "1. Title, Due date, and Description \n" +
+                            "2. completion status \n" +
+                            "3. Delete a task \n" +
+                            "4. Exit");
 //                    input.nextLine();
                     secondInnerSwitch();
                         } else {
@@ -93,18 +91,12 @@ public class Menu {
                 //change title
                 break;
             case "2":
-                //change due date
-                break;
-            case "3":
-                //change description
-                break;
-            case "4":
                 //change completion status
                 break;
-            case "5":
-                //delete a task
+            case "3":
+                tasks.removeTask(input.nextInt() - 1);
                 break;
-            case "6":
+            case "4":
                 System.exit(0);
                 break;
                 default:

@@ -52,4 +52,12 @@ public class Tasks {
 
         }
     }
+    protected void removeTask(int taskIndex) {
+        System.out.println("Here are a list of your tasks, select the one you want to delete.");
+        viewTasks();
+        listOfTasks.remove(taskIndex);
+        taskIndex -= taskIndex;
+        System.out.println("This task has been removed from your task manager.");
+        menu.startMenu();
+    }
 }
