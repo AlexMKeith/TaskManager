@@ -91,9 +91,15 @@ public class Menu {
                 //change title
                 break;
             case "2":
-                //change completion status
+                System.out.println("Here are a list of your tasks, select the one you want to mark as complete or incomplete.");
+                tasks.viewTasks();
+                tasks.selectTask(input.nextInt() - 1);
+                System.out.println("");
+                tasks.completionStatus(input.nextBoolean());
                 break;
             case "3":
+                System.out.println("Here are a list of your tasks, select the one you want to delete.");
+                tasks.viewTasks();
                 tasks.removeTask(input.nextInt() - 1);
                 break;
             case "4":

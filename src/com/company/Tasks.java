@@ -53,11 +53,18 @@ public class Tasks {
         }
     }
     protected void removeTask(int taskIndex) {
-        System.out.println("Here are a list of your tasks, select the one you want to delete.");
-        viewTasks();
         listOfTasks.remove(taskIndex);
+        uncompletedTasks.remove(taskIndex);
+        completedTasks.remove(taskIndex);
         taskIndex -= taskIndex;
         System.out.println("This task has been removed from your task manager.");
         menu.startMenu();
+    }
+    protected void completionStatus(boolean taskIndex) {
+        taskIndex ^= true;
+        menu.startMenu();
+    }
+    protected void selectTask(int taskIndex) {
+
     }
 }
