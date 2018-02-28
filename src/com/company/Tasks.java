@@ -8,6 +8,7 @@ import java.util.List;
 public class Tasks {
 
     public final Menu menu;
+    protected String location;
     protected List<NewTask> listOfTasks = new ArrayList<>();
     protected List<NewTask> completedTasks = new ArrayList<>();
     protected List<NewTask> uncompletedTasks = new ArrayList<>();
@@ -55,16 +56,23 @@ public class Tasks {
     protected void removeTask(int taskIndex) {
         listOfTasks.remove(taskIndex);
         uncompletedTasks.remove(taskIndex);
-        completedTasks.remove(taskIndex);
+//        completedTasks.remove(taskIndex);
         taskIndex -= taskIndex;
         System.out.println("This task has been removed from your task manager.");
         menu.startMenu();
     }
-    protected void completionStatus(boolean taskIndex) {
-        taskIndex ^= true;
+    protected void makeComplete(int taskIndex) {
+        location.equals("");
+        taskIndex -= taskIndex;
+            uncompletedTasks.add(location);
+            completedTasks.remove(taskIndex);
         menu.startMenu();
     }
+    protected void makeUncomplete(int taskIndex) {
+
+    }
     protected void selectTask(int taskIndex) {
+        taskIndex -= taskIndex;
 
     }
 }

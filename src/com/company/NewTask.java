@@ -7,7 +7,7 @@ public class NewTask {
     private String name;
     private String dueDate;
     private String details;
-    private boolean completed;
+//    private String completed;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
 //    public NewTask(String menu) {
@@ -17,7 +17,7 @@ public class NewTask {
         this.name = name;
         this.dueDate = dueDate;
         this.details = details;
-        this.completed = completed;
+//        this.completed = completed;
         this.dateFormat = dateFormat;
     }
 
@@ -46,13 +46,13 @@ public class NewTask {
         this.details = details;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
+//    public String isCompleted() {
+//        return completed;
+//    }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
+//    public void setCompleted(String completed) {
+//        this.completed = completed;
+//    }
 
     public SimpleDateFormat getDateFormat() {
         return dateFormat;

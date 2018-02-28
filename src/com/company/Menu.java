@@ -20,6 +20,8 @@ public class Menu {
                 System.out.println("You have chosen to create a new task. \n" +
                         "What is the name of this task?");
                 NewTask newTask = new NewTask(input.nextLine());
+                System.out.println("What is the description of this task?");
+
                 tasks.addTask(newTask);
                 System.out.println("You have added the task " + newTask.getName() + " with the details of " + newTask.getDetails() + " and the due date of " + newTask.getDueDate());
                 break;
@@ -68,9 +70,10 @@ public class Menu {
                         if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("Which details would like to change? \n" +
                             "1. Title, Due date, and Description \n" +
-                            "2. completion status \n" +
-                            "3. Delete a task \n" +
-                            "4. Exit");
+                            "2. Mark a task as complete \n" +
+                            "3. Mark a task as incomplete \n" +
+                            "4. Delete a task \n" +
+                            "5. Exit");
 //                    input.nextLine();
                     secondInnerSwitch();
                         } else {
@@ -91,18 +94,23 @@ public class Menu {
                 //change title
                 break;
             case "2":
-                System.out.println("Here are a list of your tasks, select the one you want to mark as complete or incomplete.");
+                System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
                 tasks.viewTasks();
                 tasks.selectTask(input.nextInt() - 1);
-                System.out.println("");
-                tasks.completionStatus(input.nextBoolean());
+                tasks.makeComplete(input.nextInt());
                 break;
             case "3":
+                System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
+                tasks.viewTasks();
+                tasks.selectTask(input.nextInt() - 1);
+                tasks.makeUncomplete(input.nextInt());
+                break;
+            case "4":
                 System.out.println("Here are a list of your tasks, select the one you want to delete.");
                 tasks.viewTasks();
                 tasks.removeTask(input.nextInt() - 1);
                 break;
-            case "4":
+            case "5":
                 System.exit(0);
                 break;
                 default:
