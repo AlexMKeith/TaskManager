@@ -24,9 +24,10 @@ public class Menu {
                 NewTask newTask = new NewTask(input.nextLine());
                 System.out.println("What is the description of this task?");
                 newTask.setDetails(input.nextLine());
-                Tasks.SimpleDateFormat
                 Calendar calendar = Calendar.getInstance();
-                System.out.println("The date this was created was " + dateFormat.format(calendar.getTime()));
+                System.out.println("The date this was created was " + tasks.dateFormat.format(calendar.getTime()) +
+                "What is the due date in the form of MM/DD/YYYY?");
+                newTask.setDueDate(input.nextLine());
                 tasks.addTask(newTask);
                 System.out.println("You have added the task " + newTask.getName() + " with the details of " + newTask.getDetails() + " and the due date of " + newTask.getDueDate());
                 break;
@@ -113,7 +114,7 @@ public class Menu {
             case "4":
                 System.out.println("Here are a list of your tasks, select the one you want to delete.");
                 tasks.viewTasks();
-                tasks.removeTask(input.nextInt() - 1);
+                tasks.removeUncomlpeteTask(input.nextInt() - 1);
                 break;
             case "5":
                 System.exit(0);

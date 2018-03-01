@@ -53,10 +53,17 @@ public class Tasks {
 
         }
     }
-    protected void removeTask(int taskIndex) {
+    protected void removeUncomlpeteTask(int taskIndex) {
         listOfTasks.remove(taskIndex);
         uncompletedTasks.remove(taskIndex);
 //        completedTasks.remove(taskIndex);
+        taskIndex -= taskIndex;
+        System.out.println("This task has been removed from your task manager.");
+        menu.startMenu();
+    }
+    protected void removeCompleteTask(int taskIndex) {
+        listOfTasks.remove(taskIndex);
+        completedTasks.remove(taskIndex);
         taskIndex -= taskIndex;
         System.out.println("This task has been removed from your task manager.");
         menu.startMenu();
@@ -66,7 +73,7 @@ public class Tasks {
         taskIndex -= taskIndex;
             uncompletedTasks.add(location);
             completedTasks.remove(taskIndex);
-        menu.startMenu();
+//        menu.startMenu();
     }
     protected void makeUncomplete(int taskIndex) {
 
