@@ -12,7 +12,7 @@ public class Tasks {
     protected List<NewTask> listOfTasks = new ArrayList<>();
     protected List<NewTask> completedTasks = new ArrayList<>();
     protected List<NewTask> uncompletedTasks = new ArrayList<>();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:mm");
+    protected SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:mm");
 
     public Tasks(Menu menu) {
         this.menu = menu;

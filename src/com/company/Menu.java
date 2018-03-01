@@ -2,6 +2,8 @@ package com.company;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Menu {
 
@@ -21,7 +23,10 @@ public class Menu {
                         "What is the name of this task?");
                 NewTask newTask = new NewTask(input.nextLine());
                 System.out.println("What is the description of this task?");
-
+                newTask.setDetails(input.nextLine());
+                Tasks.SimpleDateFormat
+                Calendar calendar = Calendar.getInstance();
+                System.out.println("The date this was created was " + dateFormat.format(calendar.getTime()));
                 tasks.addTask(newTask);
                 System.out.println("You have added the task " + newTask.getName() + " with the details of " + newTask.getDetails() + " and the due date of " + newTask.getDueDate());
                 break;
