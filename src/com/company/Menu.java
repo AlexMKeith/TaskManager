@@ -54,6 +54,7 @@ private Scanner input = new Scanner(System.in);
                 break;
             case "3":
                 System.exit(0);
+                break;
                 default:
                     System.out.println("Please select one of the options.");
                     startMenu();
@@ -63,9 +64,9 @@ private Scanner input = new Scanner(System.in);
     public void firstInnerSwitch() {
         switch (input.nextLine()) {
             case "1":
-                tasks.viewUncompleteTasks();
                 System.out.println("Would you like to change any details, Y or N?");
                 if (input.nextLine().toUpperCase().equals("Y")) {
+                    tasks.viewTasks();
                     System.out.println("Which one would you like to change?");
                         tasks.changeUncompleteDetails(input.nextInt() - 1);
                         //change title
@@ -75,10 +76,10 @@ private Scanner input = new Scanner(System.in);
                 }
                 break;
             case "2":
-                tasks.viewCompleteTasks();
                 System.out.println("Would you like to change any details, Y or N?");
                 if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("Which one would you like to change?");
+                    tasks.viewCompleteTasks();
                     tasks.changeCompleteDetails(input.nextInt() - 1);
                     startMenu();
                 } else {
@@ -91,7 +92,7 @@ private Scanner input = new Scanner(System.in);
                 tasks.showDetails(input.nextInt() - 1);
                 //View details here
                 System.out.println("Would you like to change any details, Y or N?");
-//                input.nextLine();
+                input.nextLine();
                         if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("Which details would like to change? \n" +
                             "1. Mark a task as complete \n" +
@@ -108,6 +109,7 @@ private Scanner input = new Scanner(System.in);
                         break;
             case "4":
                 System.exit(0);
+                break;
                 default:
                     System.out.println("Please select one of the options.");
                     startMenu();
@@ -117,9 +119,13 @@ private Scanner input = new Scanner(System.in);
     public void secondInnerSwitch() {
         switch (input.nextLine()) {
             case "1":
+                System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
+                tasks.viewUncompleteTasks();
                 tasks.makeComplete(input.nextInt() - 1);
                 break;
             case "2":
+                System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
+                tasks.viewTasks();
                 tasks.makeUncomplete(input.nextInt() - 1);
                 break;
             case "3":
@@ -134,6 +140,7 @@ private Scanner input = new Scanner(System.in);
                 break;
             case "5":
                 System.exit(0);
+                break;
                 default:
                     System.out.println("Please select one of the options.");
                     break;

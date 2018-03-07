@@ -8,7 +8,8 @@ import java.util.List;
 
 public class Tasks {
 
-    private NewTask newTask = new NewTask();
+    private NewTask userInput;
+    private NewTask newTask = userInput;
     private Scanner input = new Scanner(System.in);
     private final Menu menu;
     private String location;
@@ -73,8 +74,6 @@ public class Tasks {
     }
     protected void makeComplete(int taskIndex) {
 //        location.equals("");
-        System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
-        viewUncompleteTasks();
 //        selectTask(input.nextInt() - 1);
         taskIndex -= taskIndex;
             uncompletedTasks.add(newTask);
@@ -82,8 +81,6 @@ public class Tasks {
         menu.startMenu();
     }
     protected void makeUncomplete(int taskIndex) {
-        System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
-        viewTasks();
 //        selectTask(input.nextInt() - 1);
         taskIndex -= taskIndex;
         completedTasks.add(newTask);
@@ -95,16 +92,19 @@ public class Tasks {
 
     }
     protected void showDetails(int taskIndex) {
-        System.out.println("You have added the task " + newTask.getName() + " with the details of " + newTask.getDetails() + " and the due date of " + newTask.getDueDate());
+//        NewTask newTask;
+        taskIndex -= taskIndex;
+        NewTask something = listOfTasks.get(taskIndex);
+        // Create a new Task object = arrayName.get(taskIndex)
+        System.out.println("You have added the task " + something.getName() + " with the details of " + something.getDetails() + " and the due date of " + something.getDueDate());
     }
     protected void changeCompleteDetails(int taskIndex) {
         System.out.println("Which one would you like to change?");
-        viewTasks();
+        viewUncompleteTasks();
         taskIndex -= taskIndex;
         listOfTasks.remove(taskIndex);
         completedTasks.remove(taskIndex);
-        System.out.println("You have chosen to create a new task. \n" +
-                "What is the name of this task?");
+        System.out.println("What is the name of this task?");
         NewTask newTask = new NewTask(input.nextLine());
         System.out.println("What is the description of this task?");
         newTask.setDetails(input.nextLine());
@@ -116,13 +116,10 @@ public class Tasks {
         completedTasks.add(newTask);
     }
     protected void changeUncompleteDetails(int taskIndex) {
-        System.out.println("Which one would you like to change?");
-        viewTasks();
         taskIndex -= taskIndex;
         listOfTasks.remove(taskIndex);
         uncompletedTasks.remove(taskIndex);
-        System.out.println("You have chosen to create a new task. \n" +
-                "What is the name of this task?");
+        System.out.println("What is the name of this task?");
         NewTask newTask = new NewTask(input.nextLine());
         System.out.println("What is the description of this task?");
         newTask.setDetails(input.nextLine());
