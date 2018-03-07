@@ -1,5 +1,7 @@
 package com.company;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -7,7 +9,8 @@ import java.util.Calendar;
 
 public class Menu {
 
-    private Scanner input = new Scanner(System.in);
+//    private NewTask newTask = new NewTask();
+private Scanner input = new Scanner(System.in);
     private Tasks tasks = new Tasks(this);
 
     public void startMenu() {
@@ -25,7 +28,7 @@ public class Menu {
                 System.out.println("What is the description of this task?");
                 newTask.setDetails(input.nextLine());
                 Calendar calendar = Calendar.getInstance();
-                System.out.println("The date this was created was " + tasks.dateFormat.format(calendar.getTime()) +
+                System.out.println("The date this was created was " + tasks.dateFormat.format(calendar.getTime()) + " \n" +
                 "What is the due date in the form of MM/DD/YYYY?");
                 newTask.setDueDate(input.nextLine());
                 tasks.addTask(newTask);
@@ -38,8 +41,8 @@ public class Menu {
 //                input.nextLine();
                 if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("What would you like to change? \n" +
-                            "1. List only uncompleted tasks \n" +
-                            "2. List only completed tasks \n" +
+                            "1. List only uncompleted tasks (More options in here) \n" +
+                            "2. List only completed tasks (More options in here) \n" +
                             "3. View a task's details (More options in here) \n" +
                             "4. Exit");
 //                    input.nextLine();
@@ -48,7 +51,6 @@ public class Menu {
                     System.out.println("You have not chosen anything, returning you to the main menu.");
                     startMenu();
                 }
-                startMenu();
                 break;
             case "3":
                 System.exit(0);
@@ -62,23 +64,40 @@ public class Menu {
         switch (input.nextLine()) {
             case "1":
                 tasks.viewUncompleteTasks();
+                System.out.println("Would you like to change any details, Y or N?");
+                if (input.nextLine().toUpperCase().equals("Y")) {
+                    System.out.println("Which one would you like to change?");
+                        tasks.changeUncompleteDetails(input.nextInt() - 1);
+                        //change title
+                    startMenu();
+                } else {
+                    startMenu();
+                }
                 break;
             case "2":
                 tasks.viewCompleteTasks();
+                System.out.println("Would you like to change any details, Y or N?");
+                if (input.nextLine().toUpperCase().equals("Y")) {
+                    System.out.println("Which one would you like to change?");
+                    tasks.changeCompleteDetails(input.nextInt() - 1);
+                    startMenu();
+                } else {
+                    startMenu();
+                }
                 break;
             case "3":
-                System.out.println("Which task's details would you like to see?");
+                System.out.println("Which task would you like to see more on?");
                 tasks.viewTasks();
-
+                tasks.showDetails(input.nextInt() - 1);
                 //View details here
                 System.out.println("Would you like to change any details, Y or N?");
 //                input.nextLine();
                         if (input.nextLine().toUpperCase().equals("Y")) {
                     System.out.println("Which details would like to change? \n" +
-                            "1. Title, Due date, and Description \n" +
-                            "2. Mark a task as complete \n" +
-                            "3. Mark a task as incomplete \n" +
-                            "4. Delete a task \n" +
+                            "1. Mark a task as complete \n" +
+                            "2. Mark a task as incomplete \n" +
+                            "3. Delete a complete task \n" +
+                            "4. Delete an incomplete task \n" +
                             "5. Exit");
 //                    input.nextLine();
                     secondInnerSwitch();
@@ -91,34 +110,30 @@ public class Menu {
                 System.exit(0);
                 default:
                     System.out.println("Please select one of the options.");
+                    startMenu();
                     break;
         }
     }
     public void secondInnerSwitch() {
         switch (input.nextLine()) {
             case "1":
-                //change title
+                tasks.makeComplete(input.nextInt() - 1);
                 break;
             case "2":
-                System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
-                tasks.viewTasks();
-                tasks.selectTask(input.nextInt() - 1);
-                tasks.makeComplete(input.nextInt());
+                tasks.makeUncomplete(input.nextInt() - 1);
                 break;
             case "3":
-                System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
-                tasks.viewTasks();
-                tasks.selectTask(input.nextInt() - 1);
-                tasks.makeUncomplete(input.nextInt());
+                System.out.println("Here are a list of your tasks, select the one you want to delete.");
+                tasks.viewCompleteTasks();
+                tasks.removeCompleteTask(input.nextInt() - 1);
                 break;
             case "4":
                 System.out.println("Here are a list of your tasks, select the one you want to delete.");
-                tasks.viewTasks();
-                tasks.removeUncomlpeteTask(input.nextInt() - 1);
+                tasks.viewUncompleteTasks();
+                tasks.removeUncompleteTask(input.nextInt() - 1);
                 break;
             case "5":
                 System.exit(0);
-                break;
                 default:
                     System.out.println("Please select one of the options.");
                     break;

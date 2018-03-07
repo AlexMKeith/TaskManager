@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,11 +8,13 @@ import java.util.List;
 
 public class Tasks {
 
-    public final Menu menu;
-    protected String location;
-    protected List<NewTask> listOfTasks = new ArrayList<>();
-    protected List<NewTask> completedTasks = new ArrayList<>();
-    protected List<NewTask> uncompletedTasks = new ArrayList<>();
+    private NewTask newTask = new NewTask();
+    private Scanner input = new Scanner(System.in);
+    private final Menu menu;
+    private String location;
+    private List<NewTask> listOfTasks = new ArrayList<>();
+    private List<NewTask> completedTasks = new ArrayList<>();
+    private List<NewTask> uncompletedTasks = new ArrayList<>();
     protected SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:mm");
 
     public Tasks(Menu menu) {
@@ -53,7 +56,7 @@ public class Tasks {
 
         }
     }
-    protected void removeUncomlpeteTask(int taskIndex) {
+    protected void removeUncompleteTask(int taskIndex) {
         listOfTasks.remove(taskIndex);
         uncompletedTasks.remove(taskIndex);
 //        completedTasks.remove(taskIndex);
@@ -69,17 +72,65 @@ public class Tasks {
         menu.startMenu();
     }
     protected void makeComplete(int taskIndex) {
-        location.equals("");
+//        location.equals("");
+        System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
+        viewUncompleteTasks();
+//        selectTask(input.nextInt() - 1);
         taskIndex -= taskIndex;
-            uncompletedTasks.add(location);
+            uncompletedTasks.add(newTask);
             completedTasks.remove(taskIndex);
-//        menu.startMenu();
+        menu.startMenu();
     }
     protected void makeUncomplete(int taskIndex) {
-
+        System.out.println("Here are a list of your tasks, select the one you want to mark as complete.");
+        viewTasks();
+//        selectTask(input.nextInt() - 1);
+        taskIndex -= taskIndex;
+        completedTasks.add(newTask);
+        uncompletedTasks.remove(taskIndex);
+        menu.startMenu();
     }
     protected void selectTask(int taskIndex) {
         taskIndex -= taskIndex;
 
+    }
+    protected void showDetails(int taskIndex) {
+        System.out.println("You have added the task " + newTask.getName() + " with the details of " + newTask.getDetails() + " and the due date of " + newTask.getDueDate());
+    }
+    protected void changeCompleteDetails(int taskIndex) {
+        System.out.println("Which one would you like to change?");
+        viewTasks();
+        taskIndex -= taskIndex;
+        listOfTasks.remove(taskIndex);
+        completedTasks.remove(taskIndex);
+        System.out.println("You have chosen to create a new task. \n" +
+                "What is the name of this task?");
+        NewTask newTask = new NewTask(input.nextLine());
+        System.out.println("What is the description of this task?");
+        newTask.setDetails(input.nextLine());
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("The date this was created was " + dateFormat.format(calendar.getTime()) + " \n" +
+                "What is the due date in the form of MM/DD/YYYY?");
+        newTask.setDueDate(input.nextLine());
+        listOfTasks.add(newTask);
+        completedTasks.add(newTask);
+    }
+    protected void changeUncompleteDetails(int taskIndex) {
+        System.out.println("Which one would you like to change?");
+        viewTasks();
+        taskIndex -= taskIndex;
+        listOfTasks.remove(taskIndex);
+        uncompletedTasks.remove(taskIndex);
+        System.out.println("You have chosen to create a new task. \n" +
+                "What is the name of this task?");
+        NewTask newTask = new NewTask(input.nextLine());
+        System.out.println("What is the description of this task?");
+        newTask.setDetails(input.nextLine());
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("The date this was created was " + dateFormat.format(calendar.getTime()) + " \n" +
+                "What is the due date in the form of MM/DD/YYYY?");
+        newTask.setDueDate(input.nextLine());
+        listOfTasks.add(newTask);
+        uncompletedTasks.add(newTask);
     }
 }
